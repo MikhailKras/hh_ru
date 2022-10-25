@@ -28,7 +28,7 @@ def solution_two(a, b, max_sum):
     right_a, right_b = len(a) - 1, len(b) - 1
     counter = 0
     while max_sum >= 0:
-        print(left_a, right_a, left_b, right_b)
+        # print(left_a, right_a, left_b, right_b)
         if left_a <= right_a and left_b <= right_b:
             right_a, right_b = get_right(a, left_a, right_a), get_right(b, left_b, right_b)
             if check_average(a, left_a, right_a, b, left_b, right_b):
@@ -45,15 +45,22 @@ def solution_two(a, b, max_sum):
             right_a = get_right(a, left_a, right_a)
             max_sum -= a[left_a]
             left_a += 1
+        else:
+            return counter
         counter += 1
+        if max_sum == 0:
+            return counter
     return counter - 1
 
 
 if __name__ == '__main__':
-    n, m, s = tuple(map(int, input().split()))
-    ab, a_, b_ = [], [], []
-    for i in range(max(n, m)):
-        ab.append(list(map(lambda x: int(x) if x.isdigit() else x, input().split())))
-    a_ = [x[0] for x in ab if isinstance(x[0], int)]
-    b_ = [x[1] for x in ab if isinstance(x[1], int)]
-    print(solution_two(a_, b_, s))
+    # n, m, s = tuple(map(int, input().split()))
+    # ab, a_, b_ = [], [], []
+    # for i in range(max(n, m)):
+    #     ab.append(list(map(lambda x: int(x) if x.isdigit() else x, input().split())))
+    # a_ = [x[0] for x in ab if isinstance(x[0], int)]
+    # b_ = [x[1] for x in ab if isinstance(x[1], int)]
+    # print(solution_two(a_, b_, s))
+    print(solution_two([3, 2, 3, 6, 2, 10], [2, 7, 3, 5, 8, 9], 10))
+    print(solution_two([1, 1, 1], [1, 1, 1], 6))
+    print(solution_two([1, 7, 3, 1], [1, 5, 3, 10, 7], 3))
